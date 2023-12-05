@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>Home</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<style>
+
+    body {
+        font-family: sans-serif;
+        font-weight: 400;
+        margin: 0.5rem;
+        word-spacing: 15px;
+    }
+    button {
+        background-color: #ffe4e1;
+        color: #000000;
+        padding: 14px 20px;
+        margin: 20px 0;
+        border: unset;
+        cursor: pointer;
+        width: 50%;
+        font-size: larger;
+    }
+
+        button:hover {
+            background-color: #f7a5a5;
+        }
+
+    input.checkbox1 {
+        width: 20px;
+        height: 19px;
+        margin-right: 10px;
+        accent-color: red;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <h1 align="center" style="background-color: crimson; color: white ">Random Password Generator</h1>
+
+        <form action="{% url 'password' %}" align="center" style="font-family: sans-serif; font-weight: 400; margin: 0rem; word-spacing: 15px;">
+            <div style="font-size:larger">
+                <div class="checkboxes" style="margin: 10px 10px 10px 10px;">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="checkbox1" name="lowercase" Checked>Lowercase
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="checkbox1" name="uppercase">Uppercase
+                    </label>
+
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="checkbox1" name="digits">Digits
+                    </label>
+
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="checkbox1" name="symbols">Special Characters
+                    </label>
+
+                </div>
+
+
+
+                <div class="lp-custom-range__wrapper" style="margin: 1rem;">
+                    <label class="lp-custom-range__label" for="lp-pg-password-length">
+                        <h3>Password Length</h3>
+                    </label>
+                    <div class="lp-custom-range__inner" style="margin: 1rem;">
+                        <input value="12" name="length" class="lp-custom-range__number" step="1" id="lp-pg-password-length" type="number" min="0" max="100" />
+                        <div class="lp-custom-range" id="lp-pg-password-range">
+                            {% if error %}
+                            <h6 style="color:red">{{ error }}</h6>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="button" onclick="show()">Generate Password</button>
+
+
+            </div>
+        </form>
+        
+            {% block content %}
+            {% endblock %}
+        
+    </div>
+    
+</body>
+</html>
